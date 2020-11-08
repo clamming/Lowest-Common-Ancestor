@@ -13,15 +13,17 @@ public class lcaTest {
 	@Test
 	public void testEmptyTree() {
 		lca lca = new lca();
-		assertNull("test to find LCA when tree is empty: ", lca.findLCA(1, 4));
-		assertEquals("test to find LCA when tree is empty: ", null, lca.findLCA(1, 4));
+		assertNull("test to find LCA when tree is empty: ", lca.findLCA(2, 3));
+		assertEquals("test to find LCA when tree is empty: ", null, lca.findLCA(2, 3));
 	}
 
 	@Test
 	public void testCommon() {
 		// test tree structure:
 		// 1
+		// /\
 		// 2 3
+		// /\ /\
 		// 4 5 6 7
 		lca lca = new lca();
 		lca.root = new Node(1);
@@ -36,6 +38,7 @@ public class lcaTest {
 		assertEquals("LCA of 6 and 7: ", 3, lca.findLCA(6, 7).data);
 		assertEquals("LCA of 4 and 5: ", 2, lca.findLCA(4, 5).data);
 		assertEquals("LCA of 4 and 7: ", 1, lca.findLCA(4, 7).data);
+		assertEquals("LCA of 5 and 6: ", 1, lca.findLCA(5, 6).data);
 	}
 
 	@Test
@@ -54,7 +57,9 @@ public class lcaTest {
 	public void testForNonExistentNodes() {
 		// test tree structure:
 		// 1
+		// /\
 		// 2 3
+		// /\ /\
 		// 4 5 6 7
 
 		lca lca = new lca();
@@ -67,6 +72,6 @@ public class lcaTest {
 		lca.root.right.right = new Node(7);
 
 		assertEquals("test to find ancestors of non-existent nodes in populated tree: ", null, lca.findLCA(8, 9));
-		assertEquals("test to find ancestors of non-existent nodes in populated tree: ", null, lca.findLCA(23, 100));
+		assertEquals("test to find ancestors of non-existent nodes in populated tree: ", null, lca.findLCA(66, 99));
 	}
 }
